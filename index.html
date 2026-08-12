@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ClairStart — AI, finally clear.</title>
+    <meta
+      name="description"
+      content="AI training and coaching for beginners — small businesses and independents. France &amp; Switzerland. No jargon."
+    />
+    <meta name="theme-color" content="#0d0a08" />
+    <link rel="canonical" href="https://clairstart.com/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://clairstart.com/" />
+    <meta property="og:site_name" content="ClairStart" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="fr_FR" />
+    <meta property="og:title" content="ClairStart — AI, finally clear." />
+    <meta
+      property="og:description"
+      content="AI training and coaching for beginners — small businesses and independents. France &amp; Switzerland. No jargon."
+    />
+    <meta name="twitter:card" content="summary" />
+
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='%230d0a08'/%3E%3Ccircle cx='16' cy='16' r='7' fill='%23f5b544'/%3E%3C/svg%3E"
+    />
+
+    <style>
+      :root {
+        --bg: #0d0a08;
+        --ink: #f6f0e8;
+        --muted: #b3a595;
+        --amber: #f5b544;
+        --amber-soft: #ffd79a;
+        --line: rgba(245, 181, 68, 0.18);
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        min-height: 100svh;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        overflow-x: hidden;
+      }
+
+      /* Warm atmospheric light — the "glow" of the brand */
+      .glow {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 0;
+        background:
+          radial-gradient(
+            60rem 40rem at 50% 38%,
+            rgba(245, 181, 68, 0.16),
+            transparent 65%
+          ),
+          radial-gradient(
+            34rem 26rem at 78% 12%,
+            rgba(255, 138, 61, 0.09),
+            transparent 70%
+          ),
+          radial-gradient(
+            40rem 30rem at 12% 88%,
+            rgba(245, 181, 68, 0.07),
+            transparent 72%
+          );
+      }
+
+      /* Fine grain so the dark never looks flat */
+      .grain {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        opacity: 0.035;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      }
+
+      .shell {
+        position: relative;
+        z-index: 1;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 60rem;
+        margin: 0 auto;
+        padding: 1.75rem 1.5rem 2.5rem;
+      }
+
+      /* ---------- header ---------- */
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 0.65rem;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        font-size: 1.05rem;
+      }
+
+      .mark {
+        width: 1.35rem;
+        height: 1.35rem;
+        border-radius: 50%;
+        background: radial-gradient(circle at 35% 35%, var(--amber-soft), var(--amber) 60%, #c8801f);
+        box-shadow: 0 0 1.4rem rgba(245, 181, 68, 0.55);
+        flex: none;
+      }
+
+      .lang {
+        display: flex;
+        align-items: center;
+        gap: 0.15rem;
+        padding: 0.2rem;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      .lang button {
+        appearance: none;
+        border: 0;
+        background: transparent;
+        color: var(--muted);
+        font: inherit;
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.03em;
+        padding: 0.3rem 0.65rem;
+        border-radius: 999px;
+        cursor: pointer;
+        transition: color 0.2s ease, background-color 0.2s ease;
+      }
+
+      .lang button:hover {
+        color: var(--ink);
+      }
+
+      .lang button[aria-pressed="true"] {
+        background: var(--amber);
+        color: #2a1a05;
+      }
+
+      /* ---------- main ---------- */
+      main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 3.5rem 0 2rem;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        align-self: flex-start;
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--amber-soft);
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 0.45rem 0.9rem;
+        background: rgba(245, 181, 68, 0.06);
+      }
+
+      h1 {
+        margin: 1.5rem 0 0;
+        font-size: clamp(2.6rem, 9vw, 5.5rem);
+        line-height: 0.98;
+        font-weight: 800;
+        letter-spacing: -0.035em;
+        max-width: 14ch;
+      }
+
+      /* The brand idea: out of the blur, into the light */
+      .focus-in {
+        display: inline-block;
+        animation: sharpen 1.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+      }
+
+      .lit {
+        background: linear-gradient(100deg, var(--amber-soft), var(--amber) 55%, #ff9d3d);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        text-shadow: 0 0 4rem rgba(245, 181, 68, 0.35);
+      }
+
+      @keyframes sharpen {
+        from {
+          filter: blur(16px);
+          opacity: 0;
+          transform: translateY(0.35em);
+        }
+        to {
+          filter: blur(0);
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      .lede {
+        margin: 1.6rem 0 0;
+        font-size: clamp(1rem, 2.4vw, 1.2rem);
+        line-height: 1.6;
+        color: var(--muted);
+        max-width: 46ch;
+      }
+
+      .status {
+        margin-top: 2.4rem;
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        font-size: 0.9rem;
+        color: var(--ink);
+      }
+
+      .dot {
+        width: 0.5rem;
+        height: 0.5rem;
+        border-radius: 50%;
+        background: var(--amber);
+        box-shadow: 0 0 0 0 rgba(245, 181, 68, 0.55);
+        animation: pulse 2.6s ease-out infinite;
+        flex: none;
+      }
+
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(245, 181, 68, 0.5);
+        }
+        70% {
+          box-shadow: 0 0 0 0.7rem rgba(245, 181, 68, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(245, 181, 68, 0);
+        }
+      }
+
+      .actions {
+        margin-top: 2rem;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.9rem 1.4rem;
+      }
+
+      .cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        background: var(--amber);
+        color: #2a1a05;
+        font-weight: 700;
+        font-size: 0.98rem;
+        text-decoration: none;
+        padding: 0.9rem 1.5rem;
+        border-radius: 999px;
+        box-shadow: 0 0.9rem 2.2rem rgba(245, 181, 68, 0.22);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .cta:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 1.1rem 2.6rem rgba(245, 181, 68, 0.32);
+      }
+
+      .meta {
+        font-size: 0.88rem;
+        color: var(--muted);
+      }
+
+      /* ---------- footer ---------- */
+      footer {
+        position: relative;
+        z-index: 1;
+        border-top: 1px solid rgba(255, 255, 255, 0.07);
+        padding-top: 1.4rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem 1.25rem;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 0.82rem;
+        color: var(--muted);
+      }
+
+      a {
+        color: var(--amber-soft);
+      }
+
+      footer a {
+        text-decoration: none;
+        border-bottom: 1px solid transparent;
+        transition: border-color 0.2s ease;
+      }
+
+      footer a:hover {
+        border-bottom-color: currentColor;
+      }
+
+      :focus-visible {
+        outline: 2px solid var(--amber);
+        outline-offset: 3px;
+        border-radius: 6px;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation: none !important;
+          transition: none !important;
+        }
+        .focus-in {
+          filter: none;
+          opacity: 1;
+          transform: none;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="glow" aria-hidden="true"></div>
+    <div class="grain" aria-hidden="true"></div>
+
+    <div class="shell">
+      <header>
+        <div class="brand">
+          <span class="mark" aria-hidden="true"></span>
+          <span>ClairStart</span>
+        </div>
+
+        <div class="lang" role="group" aria-label="Language / Langue">
+          <button type="button" data-lang="en" aria-pressed="true">EN</button>
+          <button type="button" data-lang="fr" aria-pressed="false">FR</button>
+        </div>
+      </header>
+
+      <main>
+        <span
+          class="eyebrow"
+          data-en="AI training &amp; coaching · France &amp; Switzerland"
+          data-fr="Formation &amp; accompagnement IA · France &amp; Suisse"
+          >AI training &amp; coaching · France &amp; Switzerland</span
+        >
+
+        <h1>
+          <span class="focus-in" style="animation-delay: 0.05s" data-en="AI," data-fr="L'IA,"
+            >AI,</span
+          ><br />
+          <span
+            class="focus-in lit"
+            style="animation-delay: 0.28s"
+            data-en="finally clear."
+            data-fr="enfin claire."
+            >finally clear.</span
+          >
+        </h1>
+
+        <p
+          class="lede"
+          data-en="AI training and coaching for beginners — small businesses and independents. France &amp; Switzerland. No jargon, with someone who actually builds AI products."
+          data-fr="Formation et accompagnement à l'IA pour débutants — PME, TPE et indépendants. France &amp; Suisse. Sans jargon, avec quelqu'un qui construit vraiment des produits IA."
+        >
+          AI training and coaching for beginners — small businesses and independents. France &amp;
+          Switzerland. No jargon, with someone who actually builds AI products.
+        </p>
+
+        <p class="status">
+          <span class="dot" aria-hidden="true"></span>
+          <span
+            data-en="The full site is on its way — first sessions in autumn 2026."
+            data-fr="Le site complet arrive — premières sessions à l'automne 2026."
+            >The full site is on its way — first sessions in autumn 2026.</span
+          >
+        </p>
+
+        <div class="actions">
+          <a class="cta" href="mailto:contact@clairstart.com?subject=ClairStart%20%E2%80%94%20enquiry">
+            <span data-en="Get in touch" data-fr="Nous écrire">Get in touch</span>
+            <span aria-hidden="true">→</span>
+          </a>
+          <span
+            class="meta"
+            data-en="Geneva &amp; Lake Geneva area · remote or on site"
+            data-fr="Genève &amp; Arc lémanique · à distance ou sur site"
+            >Geneva &amp; Lake Geneva area · remote or on site</span
+          >
+        </div>
+      </main>
+
+      <footer>
+        <span>© 2026 ClairStart</span>
+        <span>
+          <span data-en="Operated by" data-fr="Opéré par">Operated by</span>
+          <a href="https://altoriadigital.com" rel="noopener">Altoria Digital</a>
+          ·
+          <a href="mailto:contact@clairstart.com">contact@clairstart.com</a>
+        </span>
+      </footer>
+    </div>
+
+    <script>
+      (function () {
+        var buttons = document.querySelectorAll(".lang button");
+        var nodes = document.querySelectorAll("[data-en]");
+
+        function apply(lang) {
+          document.documentElement.lang = lang;
+          nodes.forEach(function (node) {
+            var value = node.getAttribute("data-" + lang);
+            if (value) node.innerHTML = value;
+          });
+          buttons.forEach(function (button) {
+            button.setAttribute(
+              "aria-pressed",
+              button.getAttribute("data-lang") === lang ? "true" : "false"
+            );
+          });
+          try {
+            localStorage.setItem("clairstart-lang", lang);
+          } catch (e) {}
+        }
+
+        buttons.forEach(function (button) {
+          button.addEventListener("click", function () {
+            apply(button.getAttribute("data-lang"));
+          });
+        });
+
+        // English is the default; a returning visitor keeps whatever they picked.
+        var saved = null;
+        try {
+          saved = localStorage.getItem("clairstart-lang");
+        } catch (e) {}
+        if (saved === "fr") apply("fr");
+      })();
+    </script>
+  </body>
+</html>
